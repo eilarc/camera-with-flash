@@ -123,6 +123,33 @@ final class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
           }
           break;
         }
+      case "enableTorch":
+        {
+          try {
+            camera.toggleTorch(true, result);
+          } catch (Exception e) {
+            handleException(e, result);
+          }
+          break;
+        }
+      case "disableTorch":
+        {
+          try {
+            camera.toggleTorch(false, result);
+          } catch (Exception e) {
+            handleException(e, result);
+          }
+          break;
+        }
+      case "hasTorch":
+        {
+          try {
+            camera.hasTorch(result);
+          } catch (Exception e) {
+            handleException(e, result);
+          }
+          break;
+        }
       case "dispose":
         {
           if (camera != null) {
@@ -167,10 +194,8 @@ final class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
   private void handleException(Exception exception, Result result) {
     if (exception instanceof CameraAccessException) {
       result.error("CameraAccess", exception.getMessage(), null);
-      return;
     }
 
-    // CameraAccessException can not be cast to a RuntimeException.
     throw (RuntimeException) exception;
   }
 }
