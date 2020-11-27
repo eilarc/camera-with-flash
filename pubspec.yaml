@@ -1,6 +1,6 @@
 name: camera
 description: Fork of official camera package to add support for torch
-version: 0.5.8+5
+version: 1.0.0+1
 
 homepage: https://github.com/mehulcs/camera-with-flash
 
